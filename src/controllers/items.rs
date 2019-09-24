@@ -11,7 +11,7 @@ use std::env;
 
 pub fn items(req: HttpRequest) -> Result<String, ApiError> {
     let client = db::get_client()?;
-    db::auth_client(client)?;
+    let _ = db::auth_client(client);
     let coll = client
         .db(&env::var("MONGODB_DATABASE")?)
         .collection("items");
